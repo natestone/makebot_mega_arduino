@@ -135,6 +135,8 @@ void loop() {
       motor_11.run(0);
       motor_4.run(0);
       motor_12.run(0);
+      _delay(float(Time));
+
 
   }
 
