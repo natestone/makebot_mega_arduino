@@ -44,6 +44,18 @@ void motor_back_right_run(int16_t speed)
   motor_9.run(speed);
 }
 
+void motor_stop()
+{
+      motor_1.run(0);
+      motor_9.run(0);
+      motor_2.run(0);
+      motor_10.run(0);
+      //motor_3.run(0);
+      //motor_11.run(0);
+      //motor_4.run(0);
+      //motor_12.run(0);
+}
+
 void move_control(int16_t vx, int16_t vy, int16_t vw)
 {
   int16_t foward_left_speed;
@@ -82,63 +94,105 @@ void setup() {
 void _loop() {
 }
 
-void loop() {
-  if(barrier_61.isBarried()){
+int go = 0;
 
+void loop() {
+  if(barrier_61.isBarried()) 
+  {
+   
+    while (go < 1)
+     {
+
+      // forward and right
+      move_control(10 / 100.0 * 255,20 / 100.0 * 255,0 / 100.0 * 255);
+      _delay(2.0);
+
+      // back and right
+      move_control(10 / 100.0 * 255,-20 / 100.0 * 255,0 / 100.0 * 255);
+      _delay(2.0);
+    
+      // left
+      move_control(-20 / 100.0 * 255,0 / 100.0 * 255,0 / 100.0 * 255);
+      _delay(2.0);
+
+      motor_stop();
+      go++;
+
+     }
+  }
+}
+
+/*
+
+original code
+
+     // right
       move_control(50 / 100.0 * 255,0 / 100.0 * 255,0 / 100.0 * 255);
       _delay(0.7);
 
-      motor_1.run(0);
-      motor_9.run(0);
-      motor_2.run(0);
-      motor_10.run(0);
-      motor_3.run(0);
-      motor_11.run(0);
-      motor_4.run(0);
-      motor_12.run(0);
+      motor_stop();
       _delay(float(Time));
 
+     // forward
       move_control(0 / 100.0 * 255,50 / 100.0 * 255,0 / 100.0 * 255);
       _delay(0.7);
 
-      motor_1.run(0);
-      motor_9.run(0);
-      motor_2.run(0);
-      motor_10.run(0);
-      motor_3.run(0);
-      motor_11.run(0);
-      motor_4.run(0);
-      motor_12.run(0);
+      motor_stop();
       _delay(float(Time));
 
+      // left
       move_control(-50 / 100.0 * 255,0 / 100.0 * 255,0 / 100.0 * 255);
       _delay(0.7);
 
-      motor_1.run(0);
-      motor_9.run(0);
-      motor_2.run(0);
-      motor_10.run(0);
-      motor_3.run(0);
-      motor_11.run(0);
-      motor_4.run(0);
-      motor_12.run(0);
+      motor_stop();
       _delay(float(Time));
 
+      // back
       move_control(0 / 100.0 * 255,-50 / 100.0 * 255,0 / 100.0 * 255);
       _delay(0.7);
 
-      motor_1.run(0);
-      motor_9.run(0);
-      motor_2.run(0);
-      motor_10.run(0);
-      motor_3.run(0);
-      motor_11.run(0);
-      motor_4.run(0);
-      motor_12.run(0);
+      motor_stop();
       _delay(float(Time));
 
 
-  }
 
-  _loop();
-}
+right triangle
+
+      // forward
+      move_control(0 / 100.0 * 255,20 / 100.0 * 255,0 / 100.0 * 255);
+      _delay(2.0);
+
+      motor_stop();
+      _delay(float(Time));
+
+      // right and back
+      move_control(20 / 100.0 * 255,-20 / 100.0 * 255,0 / 100.0 * 255);
+      _delay(2.0);
+    
+      motor_stop();
+      _delay(float(Time));
+
+      // left
+      move_control(-20 / 100.0 * 255,0 / 100.0 * 255,0 / 100.0 * 255);
+      _delay(2.0);
+
+      motor_stop();
+      _delay(float(Time));
+
+
+equilateral traingle
+
+     // forward and right
+      move_control(10 / 100.0 * 255,20 / 100.0 * 255,0 / 100.0 * 255);
+      _delay(2.0);
+
+      // back and right
+      move_control(10 / 100.0 * 255,-20 / 100.0 * 255,0 / 100.0 * 255);
+      _delay(2.0);
+    
+      // left
+      move_control(-20 / 100.0 * 255,0 / 100.0 * 255,0 / 100.0 * 255);
+      _delay(2.0);
+
+      motor_stop();
+*/

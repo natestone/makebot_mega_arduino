@@ -44,9 +44,9 @@ void loop() {
       light_3 = random(0, 255);
       rgbled_67.setColor(0, light_1, light_2, light_3);
       rgbled_67.show();
-      light_1 = random(0, 255);
-      light_2 = random(0, 255);
-      light_3 = random(0, 255);
+    light_1 = 48;
+      light_2 = 48;
+      light_3 = 48;
       rgbled_68.setColor(0, light_1, light_2, light_3);
       rgbled_68.show();
 
@@ -57,9 +57,9 @@ void loop() {
       light_3 = random(0, 255);
       rgbled_67.setColor(0, light_2, light_3, light_1);
       rgbled_67.show();
-      light_1 = random(0, 255);
-      light_2 = random(0, 255);
-      light_3 = random(0, 255);
+      light_1 = 48;
+      light_2 = 48;
+      light_3 = 48;
       rgbled_68.setColor(0, light_2, light_3, light_1);
       rgbled_68.show();
 
@@ -70,9 +70,9 @@ void loop() {
       light_3 = random(0, 255);
       rgbled_67.setColor(0, light_3, light_1, light_2);
       rgbled_67.show();
-      light_1 = random(0, 255);
-      light_2 = random(0, 255);
-      light_3 = random(0, 255);
+light_1 = 48;
+      light_2 = 48;
+      light_3 = 48;
       rgbled_68.setColor(0, light_3, light_1, light_2);
       rgbled_68.show();
 

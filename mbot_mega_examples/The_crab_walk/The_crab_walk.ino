@@ -14,14 +14,18 @@
 #include <MeMegaPi.h>
 
 MeBarrierSensor barrier_61(61);
-MeMegaPiDCMotor motor_1(1);
+MeBarrierSensor barrier_60(60);
+MeBarrierSensor barrier_62(62);
+MeMegaPiDCMotor motor_1(PORT1A);
 MeMegaPiDCMotor motor_9(9);
-MeMegaPiDCMotor motor_2(2);
+MeMegaPiDCMotor motor_2(PORT1B);
 MeMegaPiDCMotor motor_10(10);
-MeMegaPiDCMotor motor_3(3);
+MeMegaPiDCMotor motor_3(PORT2A);
 MeMegaPiDCMotor motor_11(11);
-MeMegaPiDCMotor motor_4(4);
+MeMegaPiDCMotor motor_4(PORT2B);
 MeMegaPiDCMotor motor_12(12);
+MeNewRGBLed rgbled_67(67,4);
+MeNewRGBLed rgbled_68(68,4);
 double angle_rad = PI/180.0;
 double angle_deg = 180.0/PI;
 
@@ -30,21 +34,27 @@ float T = 0;
 void motor_foward_left_run(int16_t speed)
 {
    motor_10.run(-speed);
+    motor_2.run(-speed);
+
 }
 
 void motor_foward_right_run(int16_t speed)
 {
   motor_1.run(speed);
+   motor_9.run(-speed);
+
 }
 
 void motor_back_left_run(int16_t speed)
 {
-  motor_2.run(-speed);
+  motor_4.run(-speed);
+   motor_12.run(-speed);
 }
 
 void motor_back_right_run(int16_t speed)
 {
-  motor_9.run(speed);
+  motor_3.run(speed);
+   motor_11.run(-speed);
 }
 
 void move_control(int16_t vx, int16_t vy, int16_t vw)
@@ -74,10 +84,11 @@ void _delay(float seconds) {
 }
 
 void setup() {
-  TCCR1A = _BV(WGM10);
+/*  TCCR1A = _BV(WGM10);
   TCCR1B = _BV(CS11) | _BV(WGM12);
   TCCR2A = _BV(WGM21) | _BV(WGM20);
   TCCR2B = _BV(CS21);
+  */
   T = 0.7;
 
 }
@@ -86,7 +97,11 @@ void _loop() {
 }
 
 void loop() {
-  if(barrier_61.isBarried()){
+  if(barrier_61.isBarried()){//} && barrier_60.isBarried()){//} && barrier_62.isBarried()){
+     rgbled_67.setColor(0, 248, 248, 48);
+      rgbled_67.show();
+      rgbled_68.setColor(0, 248, 248, 48);
+      rgbled_68.show();
 
       move_control(50 / 100.0 * 255,0 / 100.0 * 255,0 / 100.0 * 255);
       _delay(0.7);
