@@ -10,6 +10,7 @@
 #include "src/MeNewRGBLed.h"
 #include <MeMegaPi.h>
 
+
 MeBarrierSensor barrier_61(61);
 MeMegaPiDCMotor motor_1(1);
 MeMegaPiDCMotor motor_9(9);
@@ -90,31 +91,21 @@ void setup() {
   Time = 0.5;
 
 }
+void _loop() 
+{}
 
-void _loop() {
-}
+MeLimitSwitch limitSwitch1(PORT_3, SLOT1);  
+MeLimitSwitch limitSwitch2(PORT_3, SLOT2); 
 
 int go = 0;
 
 void loop() {
-  if(barrier_61.isBarried()) 
+  if(barrier_61.isBarried() )
   {
-   
     while (go < 1)
      {
-
-      // forward and right
-      move_control(10 / 100.0 * 255,20 / 100.0 * 255,0 / 100.0 * 255);
-      _delay(2.0);
-
-      // back and right
-      move_control(10 / 100.0 * 255,-20 / 100.0 * 255,0 / 100.0 * 255);
-      _delay(2.0);
-    
-      // left
-      move_control(-20 / 100.0 * 255,0 / 100.0 * 255,0 / 100.0 * 255);
-      _delay(2.0);
-
+     move_control(40 / 100.0 * 255,0 / 100.0 * 255,-20 / 100.0 * 255);
+     _delay(3.7);
       motor_stop();
       go++;
 
@@ -123,6 +114,13 @@ void loop() {
 }
 
 /*
+
+// circle
+      // forward and right
+      move_control(0 / 100.0 * 255,30 / 100.0 * 255,15 / 100.0 * 255);
+      _delay(4.0);
+
+
 
 original code
 
